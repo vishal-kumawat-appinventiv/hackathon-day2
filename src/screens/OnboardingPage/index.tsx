@@ -10,12 +10,25 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
+import { AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { addUsername } from "@/redux/slices/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const OnboardingPage = () => {
   const [username, setUsername] = useState("");
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleOnboarding = () => {
-    console.log("username", username);
+    dispatch(addUsername(username));
+    toast({
+      title: "Welcome, " + username,
+      description: "You are now logged in",
+    });
+    navigate("/difficulty");
   };
 
   return (
