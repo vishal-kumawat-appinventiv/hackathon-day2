@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { RotateCcw, Rss } from "lucide-react";
 
 const ResultPage = () => {
   const resultData = useSelector((state: RootState) => state.result.data);
@@ -17,7 +18,9 @@ const ResultPage = () => {
           <CardHeader>
             <CardTitle className="text-xl md:text-2xl flex items-center justify-between">
               Result : Math Quiz App 🎉
-              <Button>Leaderboard</Button>
+              <Button>
+                Leaderboard <Rss />
+              </Button>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -31,7 +34,7 @@ const ResultPage = () => {
               <>
                 <p>Play Again to get Results</p>
                 <Button onClick={() => navigate("/quiz")} className="mt-2">
-                  Play Again
+                  Play Again <RotateCcw />
                 </Button>
               </>
             )}
