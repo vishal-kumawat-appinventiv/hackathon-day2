@@ -1,6 +1,6 @@
 import { MOCK_QUESTION } from "@/lib/mock";
 import { QuestionType } from "@/lib/types";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface questionState {
   data: QuestionType[];
@@ -28,3 +28,19 @@ const questionSlice = createSlice({
 export default questionSlice.reducer;
 
 export const {} = questionSlice.actions;
+
+export const getHardQuestions = createSelector(
+  (state: { question: questionState }) => state.question.data,
+  (questions) => questions.filter((question) => question.difficulty === "Hard")
+);
+
+export const getMediumQuestions = createSelector(
+  (state: { question: questionState }) => state.question.data,
+  (questions) =>
+    questions.filter((question) => question.difficulty === "Medium")
+);
+
+export const getEasyQuestions = createSelector(
+  (state: { question: questionState }) => state.question.data,
+  (questions) => questions.filter((question) => question.difficulty === "Easy")
+);
