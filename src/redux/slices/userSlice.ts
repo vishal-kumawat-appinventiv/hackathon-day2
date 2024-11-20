@@ -24,9 +24,14 @@ const userSlice = createSlice({
     addDifficulty: (state, action: PayloadAction<DifficultyLevels>) => {
       state.data.difficulty = action.payload;
     },
+    clearUser: (state) => {
+      localStorage.removeItem("user");
+      //@ts-ignore
+      state.data = {};
+    },
   },
 });
 
 export default userSlice.reducer;
 
-export const { addUsername, addDifficulty } = userSlice.actions;
+export const { addUsername, addDifficulty, clearUser } = userSlice.actions;
