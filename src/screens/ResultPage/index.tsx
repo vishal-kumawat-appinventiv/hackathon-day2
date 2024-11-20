@@ -54,18 +54,20 @@ const ResultPage = () => {
                       <p>
                         {rs.correctAnswer === rs.userAnswer
                           ? "Correct"
+                          : rs.userAnswer === null
+                          ? "Not Attempted"
                           : "Wrong"}
                       </p>
                     </div>
                   ))}
+                  <Button onClick={handlePlayAgain} className="mt-2">
+                    Play Again <RotateCcw />
+                  </Button>
                 </div>
               </div>
             ) : (
               <>
                 <p>Play Again to get Results</p>
-                <Button onClick={handlePlayAgain} className="mt-2">
-                  Play Again <RotateCcw />
-                </Button>
               </>
             )}
           </CardContent>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import {
@@ -18,7 +18,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { addResult } from "@/redux/slices/resultSlice";
@@ -38,8 +38,28 @@ const QuizPage = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [points, setPoints] = useState(0);
   const [quizOutput, setQuizOutput] = useState<ResultType[]>([]);
+  const [timeLeft, setTimeLeft] = useState(30);
 
   const currentQuestion = questions[currentQuestionIndex];
+
+  useEffect(() => {
+    setTimeLeft(30);
+
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          handleNextQuestion();
+          return 30;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [currentQuestionIndex]);
 
   const handleNextQuestion = () => {
     const isCorrect = selectedAnswer === currentQuestion.answer;
@@ -51,7 +71,7 @@ const QuizPage = () => {
         description: "Great job! You got it right.",
         variant: "default",
       });
-    } else {
+    } else if (selectedAnswer !== null) {
       toast({
         title: "Incorrect",
         description: `The correct answer was ${currentQuestion.answer}.`,
@@ -75,8 +95,8 @@ const QuizPage = () => {
       setQuizOutput(updatedQuizOutput);
       dispatch(addResult({ updatedQuizOutput, points }));
       toast({
-        title: "Thank for playing!",
-        description: `Here are your results`,
+        title: "Thank you for playing!",
+        description: `Here are your results.`,
       });
       navigate("/result");
     }
@@ -89,8 +109,13 @@ const QuizPage = () => {
         <Card className="w-full">
           <CardHeader>
             <CardTitle className="text-xl md:text-2xl flex items-center justify-between">
-              <div>
-                Question {currentQuestionIndex + 1} of {questions.length}
+              <div className="flex items-center">
+                <div>
+                  Question {currentQuestionIndex + 1} of {questions.length}
+                </div>
+                <div className="flex items-center gap-1 ml-2 text-red-500">
+                  <Clock /> {timeLeft}
+                </div>
               </div>
               <div className="text-right">
                 <p>
