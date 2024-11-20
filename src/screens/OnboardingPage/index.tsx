@@ -44,7 +44,7 @@ const OnboardingPage = () => {
       <Card className="w-full">
         <CardHeader>
           <CardTitle className="text-xl md:text-2xl">
-            Onboarding : Math Quiz App 😎
+            1. Onboarding : Math Quiz App 😎
           </CardTitle>
         </CardHeader>
         <CardContent>

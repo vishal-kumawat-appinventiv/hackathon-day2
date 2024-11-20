@@ -29,4 +29,4 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 
-export const { addUsername } = userSlice.actions;
+export const { addUsername, addDifficulty } = userSlice.actions;
