@@ -89,8 +89,15 @@ const QuizPage = () => {
       <div className="p-4 max-w-xl mx-auto mt-10 md:mt-36">
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-xl md:text-2xl">
-              Question {currentQuestionIndex + 1} of {questions.length}
+            <CardTitle className="text-xl md:text-2xl flex items-center justify-between">
+              <div>
+                Question {currentQuestionIndex + 1} of {questions.length}
+              </div>
+              <div className="text-right">
+                <p>
+                  Points: {points}/{questions.length}
+                </p>
+              </div>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -110,7 +117,7 @@ const QuizPage = () => {
               ))}
             </RadioGroup>
           </CardContent>
-          <CardFooter className="flex flex-col gap-2 items-start">
+          <CardFooter>
             <Button
               onClick={handleNextQuestion}
               disabled={selectedAnswer === null}
@@ -121,11 +128,6 @@ const QuizPage = () => {
                 : "Next Question"}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <div className="mt-2 w-full text-right">
-              <p>
-                Points: {points}/{questions.length}
-              </p>
-            </div>
           </CardFooter>
         </Card>
       </div>
