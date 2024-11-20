@@ -1,7 +1,24 @@
-import { Button } from "./components/ui/button";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "./components/ui/toaster";
+import { ROUTES } from "./lib/constant";
 
 const App = () => {
-  return <Button className="m-3">Button</Button>;
+  return (
+    <div className="dark:bg-black min-h-screen overflow-hidden">
+      <BrowserRouter>
+        <Routes>
+          {ROUTES.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              element={<route.component />}
+            />
+          ))}
+        </Routes>
+        <Toaster />
+      </BrowserRouter>
+    </div>
+  );
 };
 
 export default App;
