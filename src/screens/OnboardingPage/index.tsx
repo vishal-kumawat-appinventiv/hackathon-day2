@@ -23,7 +23,7 @@ const OnboardingPage = () => {
       <Card className="w-full">
         <CardHeader>
           <CardTitle className="text-xl md:text-2xl">
-            Onbording : Math Quiz App
+            Onboarding : Math Quiz App 😎
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -34,10 +34,14 @@ const OnboardingPage = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </CardContent>
-        <CardFooter>
-          <Button onClick={handleOnboarding}>
+        <CardFooter className="flex flex-col gap-2 items-start">
+          <Button onClick={handleOnboarding} className="w-[150px]">
             Proceed <ArrowRight />
           </Button>
+          <div className="mt-2">
+            <p>Made with 💛 by Vishal Kumawat</p>
+            <p>@Appinventiv Hackathon Day 2</p>
+          </div>
         </CardFooter>
       </Card>
     </div>
