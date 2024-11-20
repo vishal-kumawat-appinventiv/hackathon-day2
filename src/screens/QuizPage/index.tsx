@@ -12,10 +12,10 @@ const QuizPage = () => {
 
   let questionsToBeAsked: QuestionType[] = [];
 
-  if (difficulty === "Easy") questionsToBeAsked = useSelector(getHardQuestions);
+  if (difficulty === "Easy") questionsToBeAsked = useSelector(getEasyQuestions);
   if (difficulty === "Medium")
     questionsToBeAsked = useSelector(getMediumQuestions);
-  if (difficulty === "Hard") questionsToBeAsked = useSelector(getEasyQuestions);
+  if (difficulty === "Hard") questionsToBeAsked = useSelector(getHardQuestions);
 
   return <div>QuizPage</div>;
 };
