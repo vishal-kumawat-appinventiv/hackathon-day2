@@ -4,6 +4,7 @@ import { ROUTES } from "./lib/constant";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
+import PrivateRoute from "./routes/privateRoute";
 
 const App = () => {
   const user = useSelector((state: RootState) => state.user.data);
@@ -22,7 +23,13 @@ const App = () => {
             <Route
               key={index}
               path={route.path}
-              element={<route.component />}
+              element={
+                route.private ? (
+                  <PrivateRoute>{<route.component />}</PrivateRoute>
+                ) : (
+                  <route.component />
+                )
+              }
             />
           ))}
         </Routes>

@@ -8,21 +8,26 @@ export const ROUTES = [
   {
     path: "/",
     component: OnboardingPage,
+    private: false,
   },
   {
     path: "/difficulty",
     component: DifficultyPage,
+    private: false,
   },
   {
     path: "/quiz",
     component: QuizPage,
+    private: true,
   },
   {
     path: "/result",
     component: ResultPage,
+    private: true,
   },
   {
     path: "/*",
     component: NotFound,
+    private: false,
   },
 ];
