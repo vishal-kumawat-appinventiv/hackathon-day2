@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
 import {
   getEasyQuestions,
   getMediumQuestions,
@@ -21,10 +21,12 @@ import { useToast } from "@/hooks/use-toast";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useNavigate } from "react-router-dom";
+import { addResult } from "@/redux/slices/resultSlice";
 
 const QuizPage = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const dispatch: AppDispatch = useDispatch();
   const { difficulty } = useSelector((state: RootState) => state.user.data);
 
   let questions: QuestionType[] = [];
@@ -53,7 +55,6 @@ const QuizPage = () => {
       toast({
         title: "Incorrect",
         description: `The correct answer was ${currentQuestion.answer}.`,
-        variant: "destructive",
       });
     }
 
@@ -72,7 +73,11 @@ const QuizPage = () => {
       setQuizOutput(updatedQuizOutput);
     } else {
       setQuizOutput(updatedQuizOutput);
-      console.log("Quiz finished", updatedQuizOutput);
+      dispatch(addResult(updatedQuizOutput));
+      toast({
+        title: "Thank for playing!",
+        description: `Here are your results`,
+      });
       navigate("/result");
     }
   };

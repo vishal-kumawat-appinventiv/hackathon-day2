@@ -13,8 +13,8 @@ const resultSlice = createSlice({
   name: "result",
   initialState,
   reducers: {
-    addResult: (state, action: PayloadAction<ResultType>) => {
-      state.data.push(action.payload);
+    addResult: (state, action: PayloadAction<ResultType[]>) => {
+      state.data = action.payload;
     },
   },
 });
