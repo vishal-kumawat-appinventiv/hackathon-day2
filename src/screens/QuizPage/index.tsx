@@ -6,7 +6,7 @@ import {
   getMediumQuestions,
   getHardQuestions,
 } from "@/redux/slices/questionSlice";
-import { QuestionType } from "@/lib/types";
+import { QuestionType, ResultType } from "@/lib/types";
 import {
   Card,
   CardContent,
@@ -35,13 +35,7 @@ const QuizPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [points, setPoints] = useState(0);
-  const [quizOutput, setQuizOutput] = useState<
-    Array<{
-      question: string;
-      correctAnswer: number;
-      userAnswer: number | null;
-    }>
-  >([]);
+  const [quizOutput, setQuizOutput] = useState<ResultType[]>([]);
 
   const currentQuestion = questions[currentQuestionIndex];
 

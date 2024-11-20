@@ -10,3 +10,9 @@ export interface QuestionType {
   options: number[];
   difficulty: DifficultyLevels;
 }
+
+export interface ResultType {
+  question: string;
+  correctAnswer: number;
+  userAnswer: number | null;
+}
