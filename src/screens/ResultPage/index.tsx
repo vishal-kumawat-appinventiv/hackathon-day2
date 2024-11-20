@@ -26,8 +26,8 @@ const ResultPage = () => {
           <CardContent>
             {resultData[0]?.points ? (
               <div>
-                <h2 className="text-2xl mb-2">
-                  Points : {resultData[0]?.points}
+                <h2 className="text-2xl mb-2 font-bold">
+                  Points : {resultData[0]?.points} / 5
                 </h2>
                 <div className="flex justify-between items-center border-b py-2 bg-green-900 p-2">
                   <p>Question</p>
