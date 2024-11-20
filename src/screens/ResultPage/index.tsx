@@ -20,7 +20,7 @@ const ResultPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="max-w-4xl mx-auto p-4 mt-36">
+      <div className="max-w-4xl mx-auto p-4 mt-32">
         <Card className="w-full">
           <CardHeader>
             <CardTitle className="text-xl md:text-2xl flex flex-wrap items-center justify-between">
@@ -36,25 +36,29 @@ const ResultPage = () => {
                 <h2 className="text-2xl mb-2 font-bold">
                   Points : {resultData[0]?.points} / 5
                 </h2>
-                <div className="flex justify-between items-center border-b py-2 bg-green-900 p-2">
-                  <p>Question</p>
-                  <p>Correct Answer</p>
-                  <p>User Answer</p>
-                  <p>Result</p>
-                </div>
-                {resultData[0]?.updatedQuizOutput.map((rs, idx) => (
-                  <div
-                    key={idx}
-                    className="flex justify-between items-center border-b py-2 p-2"
-                  >
-                    <p>{rs.question}</p>
-                    <p>{rs.correctAnswer}</p>
-                    <p>{rs.userAnswer}</p>
-                    <p>
-                      {rs.correctAnswer === rs.userAnswer ? "Correct" : "Wrong"}
-                    </p>
+                <div>
+                  <div className="flex justify-between items-center border-b py-2 bg-green-900 p-2">
+                    <p>Question</p>
+                    <p>Correct Answer</p>
+                    <p>User Answer</p>
+                    <p>Result</p>
                   </div>
-                ))}
+                  {resultData[0]?.updatedQuizOutput.map((rs, idx) => (
+                    <div
+                      key={idx}
+                      className="flex justify-between items-center border-b py-2 p-2"
+                    >
+                      <p>{rs.question}</p>
+                      <p>{rs.correctAnswer}</p>
+                      <p>{rs.userAnswer}</p>
+                      <p>
+                        {rs.correctAnswer === rs.userAnswer
+                          ? "Correct"
+                          : "Wrong"}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : (
               <>
