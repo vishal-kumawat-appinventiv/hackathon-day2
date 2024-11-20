@@ -73,7 +73,7 @@ const QuizPage = () => {
       setQuizOutput(updatedQuizOutput);
     } else {
       setQuizOutput(updatedQuizOutput);
-      dispatch(addResult(updatedQuizOutput));
+      dispatch(addResult({ updatedQuizOutput, points }));
       toast({
         title: "Thank for playing!",
         description: `Here are your results`,

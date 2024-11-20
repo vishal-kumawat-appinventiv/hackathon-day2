@@ -1,11 +1,16 @@
 import { ResultType } from "@/lib/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface resultState {
-  data: ResultType[];
+interface ResultPayload {
+  updatedQuizOutput: ResultType[];
+  points: number;
 }
 
-const initialState: resultState = {
+interface ResultState {
+  data: ResultPayload[];
+}
+
+const initialState: ResultState = {
   data: [],
 };
 
@@ -13,8 +18,8 @@ const resultSlice = createSlice({
   name: "result",
   initialState,
   reducers: {
-    addResult: (state, action: PayloadAction<ResultType[]>) => {
-      state.data = action.payload;
+    addResult: (state, action: PayloadAction<ResultPayload>) => {
+      state.data.push(action.payload);
     },
   },
 });
