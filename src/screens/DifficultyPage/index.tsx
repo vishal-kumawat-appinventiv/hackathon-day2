@@ -45,11 +45,10 @@ const DifficultyPage = () => {
       <Card className="w-full">
         <CardHeader>
           <CardTitle className="text-xl md:text-2xl">
-            Select Difficulty : Math Quiz App 🧮
+            Select Difficulty : Math Quiz App 🤔
           </CardTitle>
         </CardHeader>
         <CardContent>
-          medium
           <Label htmlFor="difficulty">Choose your difficulty level</Label>
           <RadioGroup
             onValueChange={setSelectedDifficulty}
