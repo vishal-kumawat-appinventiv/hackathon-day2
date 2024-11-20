@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import {
@@ -22,6 +22,7 @@ import { ArrowRight, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { addResult } from "@/redux/slices/resultSlice";
+import Howl from "react-howler";
 
 const QuizPage = () => {
   const { toast } = useToast();
@@ -39,6 +40,7 @@ const QuizPage = () => {
   const [points, setPoints] = useState(0);
   const [quizOutput, setQuizOutput] = useState<ResultType[]>([]);
   const [timeLeft, setTimeLeft] = useState(30);
+  const [playSound, setPlaySound] = useState(false);
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -66,6 +68,7 @@ const QuizPage = () => {
 
     if (isCorrect) {
       setPoints(points + 1);
+      setPlaySound(true);
       toast({
         title: "Correct!",
         description: "Great job! You got it right.",
@@ -155,6 +158,11 @@ const QuizPage = () => {
           </CardFooter>
         </Card>
       </div>
+      <Howl
+        src="correct-answer.mp3"
+        playing={playSound}
+        onEnd={() => setPlaySound(false)}
+      />
     </div>
   );
 };
