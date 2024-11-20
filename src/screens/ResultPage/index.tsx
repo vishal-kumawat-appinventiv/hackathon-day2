@@ -24,10 +24,15 @@ const ResultPage = () => {
         <Card className="w-full">
           <CardHeader>
             <CardTitle className="text-xl md:text-2xl flex flex-wrap items-center justify-between">
-              Result : Math Quiz App 🎉
-              <Button>
-                Leaderboard <Rss />
-              </Button>
+              Results : Math Quiz App 🎉
+              <div className="flex items-center gap-2">
+                <Button onClick={handlePlayAgain}>
+                  Play Again <RotateCcw />
+                </Button>
+                <Button>
+                  Leaderboard <Rss />
+                </Button>
+              </div>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -37,21 +42,34 @@ const ResultPage = () => {
                   Points : {resultData[0]?.points} / 5
                 </h2>
                 <div>
-                  <div className="flex justify-between items-center border-b py-2 bg-green-900 p-2">
+                  <div className="hidden md:grid grid-cols-4 gap-2 font-semibold border-b py-2 bg-green-900 text-white">
                     <p>Question</p>
                     <p>Correct Answer</p>
                     <p>User Answer</p>
                     <p>Result</p>
                   </div>
+
                   {resultData[0]?.updatedQuizOutput.map((rs, idx) => (
                     <div
                       key={idx}
-                      className="flex justify-between items-center border-b py-2 p-2"
+                      className="grid md:grid-cols-4 gap-2 border-b py-2 p-2"
                     >
-                      <p>{rs.question}</p>
-                      <p>{rs.correctAnswer}</p>
+                      <p className="font-semibold md:font-normal">
+                        {rs.question}
+                      </p>
+                      <p className="text-green-700 md:text-black">
+                        {rs.correctAnswer}
+                      </p>
                       <p>{rs.userAnswer}</p>
-                      <p>
+                      <p
+                        className={`${
+                          rs.correctAnswer === rs.userAnswer
+                            ? "text-green-500"
+                            : rs.userAnswer === null
+                            ? "text-gray-500"
+                            : "text-red-500"
+                        }`}
+                      >
                         {rs.correctAnswer === rs.userAnswer
                           ? "Correct"
                           : rs.userAnswer === null
@@ -60,9 +78,6 @@ const ResultPage = () => {
                       </p>
                     </div>
                   ))}
-                  <Button onClick={handlePlayAgain} className="mt-2">
-                    Play Again <RotateCcw />
-                  </Button>
                 </div>
               </div>
             ) : (
