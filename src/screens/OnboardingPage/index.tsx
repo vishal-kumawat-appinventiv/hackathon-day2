@@ -23,6 +23,14 @@ const OnboardingPage = () => {
   const { toast } = useToast();
 
   const handleOnboarding = () => {
+    if (username === "") {
+      toast({
+        title: "Please enter a username",
+        description: "Username cannot be empty",
+        variant: "destructive",
+      });
+      return;
+    }
     dispatch(addUsername(username));
     toast({
       title: "Welcome, " + username,
