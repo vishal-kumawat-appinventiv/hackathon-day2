@@ -57,7 +57,7 @@ const ResultPage = () => {
                       <p className="font-semibold md:font-normal">
                         {rs.question}
                       </p>
-                      <p className="text-green-700 md:text-black">
+                      <p>
                         {rs.correctAnswer}
                       </p>
                       <p>{rs.userAnswer}</p>
