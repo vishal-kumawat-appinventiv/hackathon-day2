@@ -6,7 +6,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const userName = useSelector((state: RootState) => state.user.data.username);
   return (
-    <div className="bg-slate-950">
+    <div className="bg-card">
       <div className="max-w-5xl mx-auto p-4 flex items-center justify-between">
         <div onClick={() => navigate("/")} className="cursor-pointer">
           <h1 className="text-2xl">Math Quiz App</h1>
