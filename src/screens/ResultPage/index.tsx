@@ -1,14 +1,21 @@
-import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { RotateCcw, Rss } from "lucide-react";
+import { clearResult } from "@/redux/slices/resultSlice";
 
 const ResultPage = () => {
   const resultData = useSelector((state: RootState) => state.result.data);
   const navigate = useNavigate();
+  const dispatch: AppDispatch = useDispatch();
+
+  const handlePlayAgain = () => {
+    dispatch(clearResult());
+    navigate("/quiz");
+  };
 
   return (
     <div>
@@ -24,7 +31,7 @@ const ResultPage = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {resultData[0]?.points ? (
+            {resultData[0]?.points !== undefined ? (
               <div>
                 <h2 className="text-2xl mb-2 font-bold">
                   Points : {resultData[0]?.points} / 5
@@ -52,7 +59,7 @@ const ResultPage = () => {
             ) : (
               <>
                 <p>Play Again to get Results</p>
-                <Button onClick={() => navigate("/quiz")} className="mt-2">
+                <Button onClick={handlePlayAgain} className="mt-2">
                   Play Again <RotateCcw />
                 </Button>
               </>

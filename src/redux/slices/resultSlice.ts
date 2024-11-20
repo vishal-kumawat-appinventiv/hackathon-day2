@@ -21,9 +21,12 @@ const resultSlice = createSlice({
     addResult: (state, action: PayloadAction<ResultPayload>) => {
       state.data.push(action.payload);
     },
+    clearResult: (state) => {
+      state.data = [];
+    },
   },
 });
 
 export default resultSlice.reducer;
 
-export const { addResult } = resultSlice.actions;
+export const { addResult, clearResult } = resultSlice.actions;
