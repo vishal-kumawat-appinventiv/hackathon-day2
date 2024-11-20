@@ -1,13 +1,13 @@
-import { userType } from "@/lib/types";
+import { DifficultyLevels, userType } from "@/lib/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface userState {
-  data: userType[];
+  data: userType;
 }
 
 const existingUserFromLocalStorage = () => {
   const existingUser = localStorage.getItem("user");
-  return existingUser ? JSON.parse(existingUser) : [];
+  return existingUser ? JSON.parse(existingUser) : {};
 };
 
 const initialState: userState = {
@@ -19,7 +19,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUsername: (state, action: PayloadAction<string>) => {
-      state.data.push({ username: action.payload });
+      state.data.username = action.payload;
+    },
+    addDifficulty: (state, action: PayloadAction<DifficultyLevels>) => {
+      state.data.difficulty = action.payload;
     },
   },
 });
