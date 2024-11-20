@@ -23,12 +23,14 @@ import Navbar from "@/components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { addResult } from "@/redux/slices/resultSlice";
 import Howl from "react-howler";
+import { addLeaderboardData } from "@/redux/slices/leaderboardSlice";
 
 const QuizPage = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const { difficulty } = useSelector((state: RootState) => state.user.data);
+  const username = useSelector((state: RootState) => state.user.data.username);
 
   let questions: QuestionType[] = [];
   if (difficulty === "Easy") questions = useSelector(getEasyQuestions);
@@ -101,6 +103,7 @@ const QuizPage = () => {
         title: "Thank you for playing!",
         description: `Here are your results.`,
       });
+      dispatch(addLeaderboardData({ username, points, difficulty }));
       navigate("/result");
     }
   };

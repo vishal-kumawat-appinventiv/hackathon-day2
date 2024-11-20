@@ -29,7 +29,7 @@ const ResultPage = () => {
                 <Button onClick={handlePlayAgain}>
                   Play Again <RotateCcw />
                 </Button>
-                <Button>
+                <Button onClick={() => navigate("/leaderboard")}>
                   Leaderboard <Rss />
                 </Button>
               </div>
@@ -57,9 +57,7 @@ const ResultPage = () => {
                       <p className="font-semibold md:font-normal">
                         {rs.question}
                       </p>
-                      <p>
-                        {rs.correctAnswer}
-                      </p>
+                      <p>{rs.correctAnswer}</p>
                       <p>{rs.userAnswer}</p>
                       <p
                         className={`${

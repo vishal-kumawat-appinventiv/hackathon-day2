@@ -1,16 +1,11 @@
 import { MOCK_QUESTION } from "@/lib/mock";
 import { QuestionType } from "@/lib/types";
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 interface questionState {
   data: QuestionType[];
 }
-
-// const existingUserFromLocalStorage = () => {
-//   const existingUser = localStorage.getItem("user");
-//   return existingUser ? JSON.parse(existingUser) : {};
-// };
 
 const initialState: questionState = {
   data: MOCK_QUESTION,
@@ -19,11 +14,7 @@ const initialState: questionState = {
 const questionSlice = createSlice({
   name: "question",
   initialState,
-  reducers: {
-    // addUsername: (state, action: PayloadAction<string>) => {
-    //   state.data.username = action.payload;
-    // },
-  },
+  reducers: {},
 });
 
 export default questionSlice.reducer;

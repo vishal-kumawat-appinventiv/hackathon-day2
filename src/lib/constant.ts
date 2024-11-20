@@ -1,4 +1,5 @@
 import DifficultyPage from "@/screens/DifficultyPage";
+import LeaderBoardPage from "@/screens/LeaderBoardPage";
 import NotFound from "@/screens/NotFound";
 import OnboardingPage from "@/screens/OnboardingPage";
 import QuizPage from "@/screens/QuizPage";
@@ -23,6 +24,11 @@ export const ROUTES = [
   {
     path: "/result",
     component: ResultPage,
+    private: true,
+  },
+  {
+    path: "/leaderboard",
+    component: LeaderBoardPage,
     private: true,
   },
   {

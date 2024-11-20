@@ -16,3 +16,9 @@ export interface ResultType {
   correctAnswer: number;
   userAnswer: number | null;
 }
+
+export interface LeaderboardType {
+  username: string;
+  points: number;
+  difficulty: DifficultyLevels;
+}

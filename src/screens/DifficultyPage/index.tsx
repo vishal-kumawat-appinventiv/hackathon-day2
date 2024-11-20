@@ -45,7 +45,8 @@ const DifficultyPage = () => {
       <Card className="w-full">
         <CardHeader>
           <CardTitle className="text-xl md:text-2xl">
-            2. Select Difficulty : <span className="ml-2"> Math Quiz App 🤔</span>
+            2. Select Difficulty :{" "}
+            <span className="ml-2"> Math Quiz App 🤔</span>
           </CardTitle>
         </CardHeader>
         <CardContent>

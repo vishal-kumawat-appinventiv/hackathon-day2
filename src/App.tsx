@@ -8,12 +8,19 @@ import PrivateRoute from "./routes/privateRoute";
 
 const App = () => {
   const user = useSelector((state: RootState) => state.user.data);
+  const leaderBoard = useSelector((state: RootState) => state.leaderboard.data);
 
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
     }
   }, [user]);
+
+  useEffect(() => {
+    if (leaderBoard) {
+      localStorage.setItem("leaderBoard", JSON.stringify(leaderBoard));
+    }
+  }, [leaderBoard]);
 
   return (
     <div className="dark:bg-black min-h-screen overflow-hidden">
